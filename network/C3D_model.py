@@ -64,9 +64,10 @@ class C3D(nn.Module):
         x = x.view(-1, 8192)
         x = self.relu(self.fc6(x))
         x = self.dropout(x)
-        x = self.relu(self.fc7(x))
+        x = self.relu(self.fc7(x))  # ZFC 最晚基于该层的 output
         x = self.dropout(x)
 
+        # ZFC fc8已经是分类预测概率了，无法用于feature extract
         logits = self.fc8(x)
 
         return logits

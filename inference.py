@@ -27,14 +27,12 @@ def main():
         class_names = f.readlines()
         f.close()
     # init model
-    model = C3D_model.C3D(num_classes=101)
-    checkpoint = torch.load('run/run_1/models/C3D_ucf101_epoch-39.pth.tar', map_location=lambda storage, loc: storage)
-    model.load_state_dict(checkpoint['state_dict'])
+    model = C3D_model.C3D(num_classes=101, pretrained=True)
     model.to(device)
     model.eval()
 
     # read video
-    video = '/Path/to/UCF-101/ApplyLipstick/v_ApplyLipstick_g04_c02.avi'
+    video = '../ShortVideoDataProcess/resources/videos/90002167562.mp4'
     cap = cv2.VideoCapture(video)
     retaining = True
 
